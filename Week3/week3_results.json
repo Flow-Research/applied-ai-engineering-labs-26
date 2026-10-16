@@ -1,0 +1,636 @@
+[
+  {
+    "id": "Q01",
+    "question": "A jacket costs £80. It is discounted by 25%, and then a further £6 is added for delivery. What is the final amount paid?",
+    "expected": "66",
+    "baseline_answer": "The jacket is initially discounted by 25%, so the discount amount is 80 * 0.25 = £20. The price after the discount is 80 - 20 = £60. Then, an additional £6 is added for delivery, making the final amount 60 + 6 = £66.",
+    "baseline_correct": true,
+    "react_answer": 66,
+    "react_correct": true,
+    "tool_calls": 1,
+    "trace": [
+      {
+        "step": 1,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"80*(1-0.25)+6\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "80*(1-0.25)+6"
+        },
+        "action": "80*(1-0.25)+6",
+        "observation": "66"
+      },
+      {
+        "step": 2,
+        "model_output": "{\"type\": \"final\", \"answer\": 66}",
+        "decision": {
+          "type": "final",
+          "answer": 66
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q02",
+    "question": "A student has £150. They spend 35% of it on books and then spend another £24. How much money remains?",
+    "expected": "73.5",
+    "baseline_answer": "First, calculate how much was spent on books:\n\n35% of £150 = 0.35 * 150 = £52.5\n\nSubtract this amount from the initial amount to find out how much is left after buying books:\n\n£150 - £52.5 = £97.5\n\nThen subtract the £24 spent on other items:\n\n£97.5 - £24 = £73.5\n\nSo, the student has £73.5 remaining.",
+    "baseline_correct": true,
+    "react_answer": 174,
+    "react_correct": false,
+    "tool_calls": 1,
+    "trace": [
+      {
+        "step": 1,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"(150 * 35 / 100) + 24 + (150 - (150 * 35 / 100))\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "(150 * 35 / 100) + 24 + (150 - (150 * 35 / 100))"
+        },
+        "action": "(150 * 35 / 100) + 24 + (150 - (150 * 35 / 100))",
+        "observation": "174"
+      },
+      {
+        "step": 2,
+        "model_output": "{\"type\": \"final\", \"answer\": 174}",
+        "decision": {
+          "type": "final",
+          "answer": 174
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q03",
+    "question": "A train travels 125 km in the morning and 18% farther in the afternoon. How many kilometres does it travel altogether?",
+    "expected": "272.5",
+    "baseline_answer": "First, let's calculate how far the train traveled in the afternoon. It traveled 18% farther than the 125 km it traveled in the morning. \n\nTo find 18% of 125 km:\n\\[ 18\\% \\times 125 = 0.18 \\times 125 = 22.5 \\text{ km} \\]\n\nSo, the distance traveled in the afternoon is:\n\\[ 125 \\text{ km} + 22.5 \\text{ km} = 147.5 \\text{ km}",
+    "baseline_correct": false,
+    "react_answer": 147.5,
+    "react_correct": false,
+    "tool_calls": 1,
+    "trace": [
+      {
+        "step": 1,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"125 + 125 * 0.18\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "125 + 125 * 0.18"
+        },
+        "action": "125 + 125 * 0.18",
+        "observation": "147.5"
+      },
+      {
+        "step": 2,
+        "model_output": "{\"type\": \"final\", \"answer\": 147.5}",
+        "decision": {
+          "type": "final",
+          "answer": 147.5
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q04",
+    "question": "A company has 240 employees. 15% work remotely and 25% of the remaining employees work part-time. How many full-time employees work on-site?",
+    "expected": "153",
+    "baseline_answer": "First, let's find out how many employees work remotely:\nRemote workers = 15% of 240 = 0.15 * 240 = 36\n\nNow we can calculate the number of employees who are either working remotely or part-time:\nPart-time employees = 25% of (240 - 36) = 0.25 * 204 = 51\n\nNext, we'll find out how many employees are full-time and working on-site:\nOn-site full-time employees = Total employees - Remote workers - Part-time employees\nOn-site full-time",
+    "baseline_correct": false,
+    "react_answer": 153,
+    "react_correct": true,
+    "tool_calls": 1,
+    "trace": [
+      {
+        "step": 1,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"(240*(1-0.15))*0.75\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "(240*(1-0.15))*0.75"
+        },
+        "action": "(240*(1-0.15))*0.75",
+        "observation": "153"
+      },
+      {
+        "step": 2,
+        "model_output": "{\"type\": \"final\", \"answer\": 153}",
+        "decision": {
+          "type": "final",
+          "answer": 153
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q05",
+    "question": "A phone costs £600. It is reduced by 20%, then the discounted price is reduced by another 10%. What is the final price?",
+    "expected": "432",
+    "baseline_answer": "First, let's calculate the price after the first reduction of 20%.\n\nThe initial price is £600, and a 20% reduction means:\n\\[ \\text{Reduction amount} = 600 \\times \\frac{20}{100} = 120 \\]\nSo, the price after the first reduction is:\n\\[ 600 - 120 = 480 \\]\n\nNext, we apply the second reduction of 10% to the new price of £480.\n\nThe reduction amount for the second discount is:\n\\[ \\text{",
+    "baseline_correct": false,
+    "react_answer": 432,
+    "react_correct": true,
+    "tool_calls": 1,
+    "trace": [
+      {
+        "step": 1,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"600 * 0.8 * 0.9\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "600 * 0.8 * 0.9"
+        },
+        "action": "600 * 0.8 * 0.9",
+        "observation": "432"
+      },
+      {
+        "step": 2,
+        "model_output": "{\"type\": \"final\", \"answer\": 432}",
+        "decision": {
+          "type": "final",
+          "answer": 432
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q06",
+    "question": "A restaurant bill is £84. A service charge of 12.5% is added. What is the total bill?",
+    "expected": "94.5",
+    "baseline_answer": "To calculate the total bill, first we need to find out how much the service charge is on the original bill:\n\nService Charge = Original Bill * Service Charge Percentage\nService Charge = £84 * 0.125\nService Charge = £10.50\n\nNow add the service charge to the original bill to get the total bill:\n\nTotal Bill = Original Bill + Service Charge\nTotal Bill = £84 + £10.50\nTotal Bill = £94.50\n\nSo, the total bill is £94.50.",
+    "baseline_correct": false,
+    "react_answer": 94.5,
+    "react_correct": true,
+    "tool_calls": 1,
+    "trace": [
+      {
+        "step": 1,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"84 + 84 * 0.125\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "84 + 84 * 0.125"
+        },
+        "action": "84 + 84 * 0.125",
+        "observation": "94.5"
+      },
+      {
+        "step": 2,
+        "model_output": "{\"type\": \"final\", \"answer\": 94.5}",
+        "decision": {
+          "type": "final",
+          "answer": 94.5
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q07",
+    "question": "A machine produces 175 units per hour for 6 hours. In the final hour it produces 12% fewer units than in each of the earlier hours. How many units are produced in total?",
+    "expected": "1029",
+    "baseline_answer": "First, let's calculate the number of units produced in the first 5 hours:\n- The machine produces 175 units per hour.\n- For 5 hours, the total production is \\(175 \\times 5 = 875\\) units.\n\nNext, we need to determine the production rate for the final hour:\n- The machine produces 12% fewer units in the final hour compared to the previous hours.\n- Therefore, the production rate for the final hour is \\(175 - (0.12 \\times 175) = 175 - 21 =",
+    "baseline_correct": false,
+    "react_answer": 1204,
+    "react_correct": false,
+    "tool_calls": 1,
+    "trace": [
+      {
+        "step": 1,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"175*6 + 175*(1 - 0.12)*1\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "175*6 + 175*(1 - 0.12)*1"
+        },
+        "action": "175*6 + 175*(1 - 0.12)*1",
+        "observation": "1204"
+      },
+      {
+        "step": 2,
+        "model_output": "{\"type\": \"final\", \"answer\": 1204}",
+        "decision": {
+          "type": "final",
+          "answer": 1204
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q08",
+    "question": "A class has 48 students. Two-thirds submit an assignment on time. Of those who submit on time, 75% receive a distinction. How many students receive a distinction?",
+    "expected": "24",
+    "baseline_answer": "First, we find out how many students submit their assignments on time:\n\n\\[\n\\text{Students who submit on time} = \\frac{2}{3} \\times 48 = 32\n\\]\n\nNext, we calculate how many of these students receive a distinction:\n\n\\[\n\\text{Students who receive a distinction} = 75\\% \\times 32 = \\frac{75}{100} \\times 32 = 0.75 \\times 32 = 24\n\\]\n\nSo, 24 students receive a distinction.",
+    "baseline_correct": true,
+    "react_answer": 24,
+    "react_correct": true,
+    "tool_calls": 0,
+    "trace": [
+      {
+        "step": 1,
+        "model_output": "{\"type\": \"final\", \"answer\": 24}",
+        "decision": {
+          "type": "final",
+          "answer": 24
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q09",
+    "question": "A shop buys 80 items at £12 each and sells each item for £18. What is the total profit?",
+    "expected": "480",
+    "baseline_answer": "To find the total profit, we first need to calculate the total cost of buying the items and then subtract this from the total revenue generated by selling the items.\n\nThe total cost is calculated as:\n\\[ \\text{Total Cost} = \\text{Number of Items} \\times \\text{Cost per Item} = 80 \\times £12 = £960 \\]\n\nThe total revenue from selling the items is:\n\\[ \\text{Total Revenue} = \\text{Number of Items} \\times \\text{Selling Price per Item} = 80 \\times £18 = £144",
+    "baseline_correct": false,
+    "react_answer": 480,
+    "react_correct": true,
+    "tool_calls": 1,
+    "trace": [
+      {
+        "step": 1,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"(80*18)-(80*12)\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "(80*18)-(80*12)"
+        },
+        "action": "(80*18)-(80*12)",
+        "observation": "480"
+      },
+      {
+        "step": 2,
+        "model_output": "{\"type\": \"final\", \"answer\": 480}",
+        "decision": {
+          "type": "final",
+          "answer": 480
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q10",
+    "question": "A monthly electricity bill is £120. It increases by 15% and then receives a £10 discount. What is the final bill?",
+    "expected": "128",
+    "baseline_answer": "First, we calculate the increase in the electricity bill:\n\nIncrease = Original Bill * Percentage Increase\n         = £120 * 15%\n         = £120 * 0.15\n         = £18\n\nSo, the new bill after the increase is:\n\nNew Bill = Original Bill + Increase\n         = £120 + £18\n         = £138\n\nThen, we apply the £10 discount to this new bill:\n\nFinal Bill = New Bill - Discount\n          = £138 - £10\n          = £128\n\nTherefore, the",
+    "baseline_correct": true,
+    "react_answer": 128,
+    "react_correct": true,
+    "tool_calls": 1,
+    "trace": [
+      {
+        "step": 1,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"120*(1+0.15)-10\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "120*(1+0.15)-10"
+        },
+        "action": "120*(1+0.15)-10",
+        "observation": "128"
+      },
+      {
+        "step": 2,
+        "model_output": "{\"type\": \"final\", \"answer\": 128}",
+        "decision": {
+          "type": "final",
+          "answer": 128
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q11",
+    "question": "A car travels 360 miles using 12 gallons of fuel. At the same efficiency, how many gallons are needed to travel 525 miles?",
+    "expected": "17.5",
+    "baseline_answer": "To find out how many gallons are needed to travel 525 miles, we first need to determine the car's fuel efficiency in miles per gallon (mpg).\n\nGiven that the car travels 360 miles on 12 gallons of fuel, its fuel efficiency is:\n\n\\[ \\text{Fuel Efficiency} = \\frac{\\text{Distance}}{\\text{Gallons}} = \\frac{360 \\text{ miles}}{12 \\text{ gallons}} = 30 \\text{ mpg} \\]\n\nNow, with a fuel efficiency of 30 miles per gallon, we can calculate how",
+    "baseline_correct": false,
+    "react_answer": 17.5,
+    "react_correct": true,
+    "tool_calls": 1,
+    "trace": [
+      {
+        "step": 1,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"525/360*12\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "525/360*12"
+        },
+        "action": "525/360*12",
+        "observation": "17.5"
+      },
+      {
+        "step": 2,
+        "model_output": "{\"type\": \"final\", \"answer\": 17.5}",
+        "decision": {
+          "type": "final",
+          "answer": 17.5
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q12",
+    "question": "A project has 480 tasks. 35% are completed in week one and 25% of the remaining tasks are completed in week two. How many tasks remain?",
+    "expected": "234",
+    "baseline_answer": "In week one, 35% of 480 tasks are completed:\n\\( 480 \\times 0.35 = 168 \\) tasks.\n\nThe number of tasks remaining after week one is:\n\\( 480 - 168 = 312 \\).\n\nIn week two, 25% of the remaining 312 tasks are completed:\n\\( 312 \\times 0.25 = 78 \\) tasks.\n\nThe number of tasks remaining after week two is:\n\\( 312 - 78 = 234",
+    "baseline_correct": true,
+    "react_answer": 246,
+    "react_correct": false,
+    "tool_calls": 1,
+    "trace": [
+      {
+        "step": 1,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"480 * 0.35 + (480 - 480 * 0.35) * 0.25\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "480 * 0.35 + (480 - 480 * 0.35) * 0.25"
+        },
+        "action": "480 * 0.35 + (480 - 480 * 0.35) * 0.25",
+        "observation": "246"
+      },
+      {
+        "step": 2,
+        "model_output": "{\"type\": \"final\", \"answer\": 246}",
+        "decision": {
+          "type": "final",
+          "answer": 246
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q13",
+    "question": "A worker earns £16.50 per hour for the first 35 hours and 1.5 times that rate for each of 6 overtime hours. What is the total weekly pay?",
+    "expected": "726",
+    "baseline_answer": "First, let's calculate the earnings for the regular hours:\n\n- The worker works 35 hours at a rate of £16.50 per hour.\n- So, the earnings for regular hours = 35 * £16.50\n\nNext, we'll calculate the earnings for the overtime hours:\n\n- The worker works 6 hours of overtime at a rate of 1.5 times the regular hourly rate.\n- The overtime hourly rate = 1.5 * £16.50\n- So, the earnings for overtime hours = 6 * (1.5 * £16.5",
+    "baseline_correct": false,
+    "react_answer": 729.75,
+    "react_correct": false,
+    "tool_calls": 2,
+    "trace": [
+      {
+        "step": 1,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"16.5*35 + (16.5*1.5*6)}\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "16.5*35 + (16.5*1.5*6)}"
+        },
+        "action": "16.5*35 + (16.5*1.5*6)}",
+        "observation": "ERROR: invalid arithmetic expression."
+      },
+      {
+        "step": 2,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"16.5*35 + (16.5*1.5*6)}\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "16.5*35 + (16.5*1.5*6)}"
+        },
+        "action": "16.5*35 + (16.5*1.5*6)}",
+        "observation": "ERROR: invalid arithmetic expression."
+      },
+      {
+        "step": 3,
+        "model_output": "{\"type\": \"final\", \"answer\": 729.75}",
+        "decision": {
+          "type": "final",
+          "answer": 729.75
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q14",
+    "question": "A recipe serves 6 people and requires 450 grams of rice. How much rice is needed for 14 people?",
+    "expected": "1050",
+    "baseline_answer": "To find out how much rice is needed for 14 people, we can set up a proportion since the number of people and the amount of rice are directly proportional.\n\nFor 6 people, we need 450 grams of rice.\n\nSo, for 1 person, we need \\( \\frac{450}{6} = 75 \\) grams of rice.\n\nTherefore, for 14 people, we need \\( 75 \\times 14 = 1050 \\) grams of rice.",
+    "baseline_correct": true,
+    "react_answer": "1050 grams",
+    "react_correct": true,
+    "tool_calls": 1,
+    "trace": [
+      {
+        "step": 1,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"450 / 6 * 14\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "450 / 6 * 14"
+        },
+        "action": "450 / 6 * 14",
+        "observation": "1050"
+      },
+      {
+        "step": 2,
+        "model_output": "{\"type\": \"final\", \"answer\": \"1050 grams\"}",
+        "decision": {
+          "type": "final",
+          "answer": "1050 grams"
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q15",
+    "question": "A product originally costs £240. The price is increased by 18% and then reduced by 15%. What is the final price?",
+    "expected": "240.72",
+    "baseline_answer": "First, let's calculate the price after an 18% increase:\n\nPrice after 18% increase = Original Price + (Original Price * 18%)\n\nPrice after 18% increase = £240 + (£240 * 0.18)\n\nPrice after 18% increase = £240 + £43.20\n\nPrice after 18% increase = £283.20\n\nNext, we reduce this new price by 15%:\n\nFinal Price = Price after 18% increase - (Price after 18% increase *",
+    "baseline_correct": false,
+    "react_answer": 269.28,
+    "react_correct": false,
+    "tool_calls": 2,
+    "trace": [
+      {
+        "step": 1,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"240 * 1.18 * (1 - 0.15)}\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "240 * 1.18 * (1 - 0.15)}"
+        },
+        "action": "240 * 1.18 * (1 - 0.15)}",
+        "observation": "ERROR: invalid arithmetic expression."
+      },
+      {
+        "step": 2,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"240 * 1.18 * (1 - 0.15)}\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "240 * 1.18 * (1 - 0.15)}"
+        },
+        "action": "240 * 1.18 * (1 - 0.15)}",
+        "observation": "ERROR: invalid arithmetic expression."
+      },
+      {
+        "step": 3,
+        "model_output": "{\"type\": \"final\", \"answer\": 269.28}",
+        "decision": {
+          "type": "final",
+          "answer": 269.28
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q16",
+    "question": "A university has 1,200 students. 40% study computing, and 30% of computing students are postgraduate students. How many postgraduate computing students are there?",
+    "expected": "144",
+    "baseline_answer": "To find the number of postgraduate computing students:\n\n1. First, calculate the total number of students studying computing:\n   - 40% of 1,200 students = 0.40 * 1200 = 480 students\n\n2. Then, calculate the number of these computing students who are postgraduates:\n   - 30% of 480 students = 0.30 * 480 = 144 students\n\nTherefore, there are 144 postgraduate computing students.",
+    "baseline_correct": true,
+    "react_answer": 144,
+    "react_correct": true,
+    "tool_calls": 1,
+    "trace": [
+      {
+        "step": 1,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"1200 * 0.4 * 0.3\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "1200 * 0.4 * 0.3"
+        },
+        "action": "1200 * 0.4 * 0.3",
+        "observation": "144"
+      },
+      {
+        "step": 2,
+        "model_output": "{\"type\": \"final\", \"answer\": 144}",
+        "decision": {
+          "type": "final",
+          "answer": 144
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q17",
+    "question": "A warehouse receives 3 shipments containing 125, 180, and 245 items. It then ships out 28% of the total. How many items remain?",
+    "expected": "396",
+    "baseline_answer": "First, let's calculate the total number of items received:\n\nTotal items = 125 + 180 + 245 = 550\n\nNext, we calculate 28% of the total items to find out how many were shipped out:\n\nItems shipped out = 28% of 550 = 0.28 * 550 = 154\n\nNow, subtract the number of items shipped out from the total to find out how many remain:\n\nItems remaining = Total items - Items shipped out = 550 - 154 = 39",
+    "baseline_correct": false,
+    "react_answer": 276.2,
+    "react_correct": false,
+    "tool_calls": 2,
+    "trace": [
+      {
+        "step": 1,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"(125+180+245)*(1-0.28)}\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "(125+180+245)*(1-0.28)}"
+        },
+        "action": "(125+180+245)*(1-0.28)}",
+        "observation": "ERROR: invalid arithmetic expression."
+      },
+      {
+        "step": 2,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"(125+180+245)*(1-0.28)}\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "(125+180+245)*(1-0.28)}"
+        },
+        "action": "(125+180+245)*(1-0.28)}",
+        "observation": "ERROR: invalid arithmetic expression."
+      },
+      {
+        "step": 3,
+        "model_output": "{\"type\": \"final\", \"answer\": 276.2}",
+        "decision": {
+          "type": "final",
+          "answer": 276.2
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q18",
+    "question": "An investment of £800 increases by 12% in the first year and decreases by 5% in the second year. What is its value after two years?",
+    "expected": "851.2",
+    "baseline_answer": "First, let's calculate the increase in the first year:\n\nIncrease = Original amount * Percentage increase\n         = £800 * 12%\n         = £800 * 0.12\n         = £96\n\nSo, the amount after the first year is:\nAmount after first year = Original amount + Increase\n                        = £800 + £96\n                        = £896\n\nNext, we calculate the decrease in the second year:\n\nDecrease = Amount after first year * Percentage decrease\n         = £896 * 5%\n         = £896 *",
+    "baseline_correct": false,
+    "react_answer": 851.2,
+    "react_correct": true,
+    "tool_calls": 1,
+    "trace": [
+      {
+        "step": 1,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"800 * (1 + 0.12) * (1 - 0.05)\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "800 * (1 + 0.12) * (1 - 0.05)"
+        },
+        "action": "800 * (1 + 0.12) * (1 - 0.05)",
+        "observation": "851.2"
+      },
+      {
+        "step": 2,
+        "model_output": "{\"type\": \"final\", \"answer\": 851.2}",
+        "decision": {
+          "type": "final",
+          "answer": 851.2
+        }
+      }
+    ]
+  },
+  {
+    "id": "Q19",
+    "question": "A team completes 45% of a 320-task project in the first phase. In the second phase, it completes 40% of the remaining tasks. How many tasks are still unfinished?",
+    "expected": "105.6",
+    "baseline_answer": "First, let's calculate how many tasks were completed in the first phase:\n\n45% of 320 tasks = 0.45 * 320 = 144 tasks\n\nSo, the number of tasks remaining after the first phase is:\n\n320 - 144 = 176 tasks\n\nIn the second phase, they complete 40% of the remaining 176 tasks:\n\n40% of 176 tasks = 0.40 * 176 = 70.4 tasks\n\nSince we can't have a fraction of a task",
+    "baseline_correct": false,
+    "react_answer": "NO FINAL ANSWER",
+    "react_correct": false,
+    "tool_calls": 1,
+    "trace": [
+      {
+        "step": 1,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"(320 * (1 - 0.45)) * (1 - 0.4) + (320 * 0.45)}\"",
+        "decision": null
+      },
+      {
+        "step": 2,
+        "model_output": "{\"type\": \"tool_call\"}",
+        "decision": {
+          "type": "tool_call"
+        }
+      },
+      {
+        "step": 3,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"((320 * (1 - 0.45)) * (1 - 0.4)) + (320 * 0.45)\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "((320 * (1 - 0.45)) * (1 - 0.4)) + (320 * 0.45)"
+        },
+        "action": "((320 * (1 - 0.45)) * (1 - 0.4)) + (320 * 0.45)",
+        "observation": "249.6"
+      }
+    ]
+  },
+  {
+    "id": "Q20",
+    "question": "A student scores 72 and 84 on the first two tests. The final test is worth twice as much as each of the first two tests. What score must the student get on the final test to achieve an overall weighted average of 85?",
+    "expected": "92",
+    "baseline_answer": "Let's denote the score on the final test as \\( x \\).\n\nThe weight of each of the first two tests is 1, and the weight of the final test is 2. Therefore, the total weight is 1 + 1 + 2 = 4.\n\nTo achieve an overall weighted average of 85, the equation for the weighted average would be:\n\n\\[\n\\frac{72 \\cdot 1 + 84 \\cdot 1 + x \\cdot 2}{4} = 85\n\\]\n\nSimplifying the numerator gives us:\n\n\\[\n\\frac{72 +",
+    "baseline_correct": false,
+    "react_answer": 96,
+    "react_correct": false,
+    "tool_calls": 2,
+    "trace": [
+      {
+        "step": 1,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"(72 + 84 + x) / (1 + 1 + 2) = 85\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "(72 + 84 + x) / (1 + 1 + 2) = 85"
+        },
+        "action": "(72 + 84 + x) / (1 + 1 + 2) = 85",
+        "observation": "ERROR: invalid arithmetic expression."
+      },
+      {
+        "step": 2,
+        "model_output": "{\"type\": \"tool_call\", \"expression\": \"(72 + 84 + x) / 4 = 85\"}",
+        "decision": {
+          "type": "tool_call",
+          "expression": "(72 + 84 + x) / 4 = 85"
+        },
+        "action": "(72 + 84 + x) / 4 = 85",
+        "observation": "ERROR: invalid arithmetic expression."
+      },
+      {
+        "step": 3,
+        "model_output": "{\"type\": \"final\", \"answer\": 96}",
+        "decision": {
+          "type": "final",
+          "answer": 96
+        }
+      }
+    ]
+  }
+]
