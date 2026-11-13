@@ -10,5 +10,7 @@ This report summarizes the evaluation of the language model (`Qwen/Qwen2.5-3B-In
 - **Baseline Accuracy**: 8.11%
 - **ReAct Accuracy**: 18.92%
 
+![Evaluation Results](evals.png)
+
 ## Conclusion
 The ReAct approach significantly outperformed the baseline, improving accuracy from 8.11% to 18.92%. This demonstrates the effectiveness of allowing the model to offload complex logic and computational tasks to external tools, reducing hallucination and calculation errors.
